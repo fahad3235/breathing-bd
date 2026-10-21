@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breathing BD &#8212; Guided breathing sessions</title>
+<meta name="description" content="Offline guided breathing coach: box breathing, 4-7-8, custom patterns, session stats. 100% offline.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">&#9673;</span>
+    <div>
+      <h1 id="appTitle">Breathing BD</h1>
+      <p id="appTagline" class="tagline"></p>
+    </div>
+  </div>
+  <button id="langToggle" class="btn ghost" type="button">&#2476;&#2494;&#2434;&#2482;&#2494;</button>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button id="tab-guide" class="tab active" role="tab" type="button" data-i18n="nav.guide">Guide</button>
+  <button id="tab-history" class="tab" role="tab" type="button" data-i18n="nav.history">History</button>
+  <button id="tab-data" class="tab" role="tab" type="button" data-i18n="nav.data">Data</button>
+</nav>
+
+<main>
+  <!-- GUIDE -->
+  <section id="panel-guide" class="panel active">
+    <h2 data-i18n="patterns.heading">Choose a pattern</h2>
+    <div id="patternCards" class="pattern-grid"></div>
+    <div id="customInputs" class="custom-grid" style="display:none"></div>
+
+    <h2 data-i18n="setup.heading">Session length</h2>
+    <div class="setup-row">
+      <div class="seg">
+        <button id="modeCycles" class="seg-btn selected" type="button">Cycles</button>
+        <button id="modeMinutes" class="seg-btn" type="button">Minutes</button>
+      </div>
+      <input id="modeN" class="num-input" type="number" min="1" max="200" step="1" value="5" aria-label="count">
+      <button id="soundToggle" class="btn ghost on" type="button">On</button>
+    </div>
+    <p id="bpmHint" class="hint"></p>
+    <p id="formError" class="error" style="display:none"></p>
+
+    <div class="stage">
+      <div id="breathCircle" class="breath-circle phase-idle" aria-hidden="true"></div>
+      <div class="stage-text">
+        <div id="phaseLabel" class="phase-label"></div>
+        <div id="phaseCount" class="phase-count"></div>
+      </div>
+    </div>
+    <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
+    <p id="liveStats" class="hint"></p>
+
+    <div class="controls">
+      <button id="startBtn" class="btn primary" type="button" data-i18n="btn.start">Start session</button>
+      <button id="pauseBtn" class="btn" type="button" data-i18n="btn.pause" disabled>Pause</button>
+      <button id="stopBtn" class="btn danger" type="button" data-i18n="btn.stop" disabled>End session</button>
+    </div>
+
+    <div id="resultCard" class="result-card" style="display:none">
+      <h3 id="resultTitle"></h3>
+      <p id="resultStats" class="result-stats"></p>
+      <p id="resultNote" class="hint"></p>
+      <button id="againBtn" class="btn" type="button" data-i18n="done.again">Start another</button>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="panel-history" class="panel">
+    <h2 data-i18n="hist.heading">Session history</h2>
+    <div id="dashCards" class="stat-grid"></div>
+    <div id="historyList" class="hist-list"></div>
+  </section>
+
+  <!-- DATA -->
+  <section id="panel-data" class="panel">
+    <h2 data-i18n="nav.data">Data</h2>
+    <div class="data-row">
+      <button id="exportBtn" class="btn" type="button" data-i18n="data.export">Export JSON</button>
+      <label class="btn file-label">
+        <span data-i18n="data.import">Import JSON</span>
+        <input id="importFile" type="file" accept="application/json" hidden>
+      </label>
+    </div>
+    <p id="importMsg" class="hint"></p>
+    <div class="danger-zone">
+      <button id="eraseBtn" class="btn danger" type="button" data-i18n="data.erase">Erase all data</button>
+      <div id="eraseBox" style="display:none">
+        <p class="hint" data-i18n="data.erase.confirm">Type DELETE to erase all sessions and settings.</p>
+        <input id="eraseWord" class="text-input" type="text" autocomplete="off" placeholder="DELETE">
+        <button id="eraseConfirm" class="btn danger" type="button">OK</button>
+        <p id="eraseMsg" class="hint"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer.offline"></p>
+  <p data-i18n="footer.medical"></p>
+</footer>
+
+<script src="js/logic.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

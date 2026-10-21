@@ -1,0 +1,7 @@
+# breathing-bd .gitignore
+node_modules/
+.DS_Store
+*.log
+/tmp/
+.vscode/
+.idea/
